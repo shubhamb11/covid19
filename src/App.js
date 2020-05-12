@@ -8,7 +8,7 @@ class App extends React.Component{
     return (
       <div className="App">
         <Helmet>
-          <meta charSet="utf-8" />
+          {/* <meta charSet="utf-8" /> */}
           <title>Covid19 Tracker</title>
         </Helmet>
         <CustomTabs />  
