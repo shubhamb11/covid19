@@ -34,6 +34,7 @@ const fetchingData = async (key) => {
                     if (stateInfo.statecode.toLowerCase() === "dl") {
                         fetchedData = stateInfo;
                     }
+                    return fetchedData;
                 });
             } catch (error) {
                 console.log("error in getting data for City"); 
@@ -57,7 +58,7 @@ const fetchingData = async (key) => {
                     {
                         fetchedData[key] = data[key].value
                     }
-                    
+                    return fetchedData;
                 })
                 fetchedData["active"] = fetchedData.confirmed - fetchedData.recovered - fetchedData.deaths;
                 fetchedData["lastupdatedtime"] = data["lastUpdate"];
@@ -110,7 +111,7 @@ class CustomTabs extends React.Component {
         // }
 
         return(
-            <Tabs style={{marginTop: 20}}tabBarGutter={50} defaultActiveKey="1" onChange={(key)=>this.fetchRenderedData(key)} size="large" destroyInactiveTabPane="false" animated={false}>
+            <Tabs className="main-tabs" tabBarGutter={50} defaultActiveKey="1" onChange={(key)=>this.fetchRenderedData(key)} size="large" destroyInactiveTabPane="false" animated={false}>
                 <TabPane tab="Delhi" key="1">
                     <CityTracker area="Delhi" data={data} />
                 </TabPane>
