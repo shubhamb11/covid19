@@ -1,6 +1,7 @@
 import React from 'react';
-import {Row, Col, Card, Tooltip, Typography, Spin} from 'antd';
+import {Row, Col, Card, Tooltip, Typography, Spin, notification} from 'antd';
 import CountUp from 'react-countup';
+import { InfoCircleOutlined } from '@ant-design/icons';
 
 const{ Text } = Typography;
 
@@ -11,13 +12,26 @@ const CardGroup = (value) => {
             <Spin size="large" />
         );
     }
+    const openNotificationWithIcon = type => {
+        notification[type]({
+            style:{
+                width:300,
+                marginLeft:90,
+            },
+            message: data.state,
+            description: <div className="txt" dangerouslySetInnerHTML={{ __html: data.statenotes }} />
+        });
+    };
+    
+
     return(
         <div className="card-group">
                 {/* <h3>Global Tracker {data.confirmed.value.toString()}</h3> */}
                 {/* <Divider orientation="center" style={{ color: '#333', fontWeight: 'normal' }}>
                     Global Tracker
                 </Divider> */}
-                <Row justify="center"><Text className="txt" type="secondary">Last Updated on: &nbsp;&nbsp; {new Date(data.lastupdatedtime).toDateString()}
+                <Row justify="center"><Text className="txt" type="secondary">Last Updated on: &nbsp;&nbsp; {new Date(data.lastupdatedtime).toDateString()} 
+                &nbsp;<InfoCircleOutlined onClick={() => openNotificationWithIcon('success')} />
                 </Text><br/><br/></Row>
                 <Row gutter={12} justify="center">
                     <Col xs={10} md={3} className="confirmed meta-item">
